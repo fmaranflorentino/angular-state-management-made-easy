@@ -1,11 +1,12 @@
 import { CommonModule } from '@angular/common';
-import { NgModule } from '@angular/core';
+import { NgModule, ModuleWithProviders } from '@angular/core';
 import { EntityDataService, EntityDefinitionService } from '@ngrx/data';
 import { DashboardComponent } from './components/dashboard.component';
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { entityMetaData, entityName } from './entities/config/entity.config';
 import { DashboardDataService } from './entities/services/dashboard-data.service';
 import { DashboardEntityService } from './entities/services/dashboard-entity.service';
+import { moduleWithConfig } from './module.config';
 
 @NgModule({
   declarations: [DashboardComponent],
@@ -24,5 +25,12 @@ export class DashboardModule {
       entityName,
       this.dashboardDataService
     );
+  }
+
+  static config(config: any): ModuleWithProviders<DashboardModule> {
+    return {
+      ngModule: DashboardModule,
+      providers: moduleWithConfig(config),
+    }
   }
 }
