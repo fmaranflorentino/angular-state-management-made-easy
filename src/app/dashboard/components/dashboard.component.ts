@@ -1,5 +1,6 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { DashboardEntityService } from '../entities/services/dashboard-entity.service';
+import { AppEntityServices } from 'src/app/store/app-store/entity/app-entity-services';
 
 @Component({
   selector: 'app-dashboard',
@@ -7,8 +8,10 @@ import { DashboardEntityService } from '../entities/services/dashboard-entity.se
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit, AfterViewInit {
-
-  constructor(private dashboardService: DashboardEntityService) {}
+  dashboardService: DashboardEntityService;
+  constructor(appEntityServices: AppEntityServices) {
+    this.dashboardService = appEntityServices.dashboardEntityService
+  }
 
 
   ngOnInit(): void {
